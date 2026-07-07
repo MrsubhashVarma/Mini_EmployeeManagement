@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Dashboard</title>
+</head>
+<body>
+    <h1>Employee Dashboard</h1>
+    <p>Welcome, {{ request.user.username }}! <a href="{% url 'employee_logout' %}">Logout</a></p>
+
+    <h2>Employees</h2>
+    <table border="1" cellpadding="8" cellspacing="0">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Department</th>
+                <th>Designation</th>
+                <th>Salary</th>
+                <th>City</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee in employees %}
+                <tr>
+                    <td>{{ employee.id }}</td>
+                    <td>{{ employee.name }}</td>
+                    <td>{{ employee.email }}</td>
+                    <td>{{ employee.phone }}</td>
+                    <td>{{ employee.department }}</td>
+                    <td>{{ employee.designation }}</td>
+                    <td>{{ employee.salary }}</td>
+                    <td>{{ employee.city }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="8">No employees found.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
